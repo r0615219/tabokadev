@@ -1,0 +1,44 @@
+{% extends '_layout' %}
+
+{% block content %}
+
+<div class="block white">
+	<div class="title center">
+		<h1 class="title">Contact</h1>
+	</div>
+	<div class="content">
+		<!--https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=12&size=400x400&maptype=roadmap&key=YOUR_API_KEY-->
+		<div class="container">
+			{% if entry.text %}
+			<div class="title center">
+				<h4 class="title">{{ entry.text }}</h4>
+			</div>
+			{% endif %}
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="card" style="margin-top: 0">
+						<div class="card-body">
+							<h4 class="card-title">Contact Adres</h4>
+							{% if entry.adresLijn1 %}<p class="card-text">{{ entry.adresLijn1 }}</p>{% endif %}
+							{% if entry.adresLijn2 and entry.adresLijn3 %}<p class="card-text">{{ entry.adresLijn2 }}<br>{{ entry.adresLijn3 }}</p>{% endif %}
+							{% if entry.telefoonnummer %}<a href="tel:{{entry.telefoonnummer}}" class="card-text"><i class="fas fa-phone"></i> &nbsp; {{ entry.telefoonnummer }}</a><br>{% endif %}
+							{% if entry.email %}<a href="mailto:{{entry.telefoonnummer}}" class="card-text"><i class="fas fa-at"></i> &nbsp; {{ entry.email }}</a>{% endif %}
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">De Piste</h4>
+							<p>De Taboka-paardrijlessen gaan door op de piste op de Tervuursesteenweg.</p>
+							<a href="https://www.google.com/maps/dir/current+location/50.930217,+4.498693" target="_blank" class="btn btn-primary">Google Maps</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8">
+					<img style="width: 100%" class="img-raised rounded img-fluid" src="https://maps.googleapis.com/maps/api/staticmap?center=50.930212,4.496173&markers=color:green%7Clabel:P%7C50.930153,4.498608&markers=color:red%7Clabel:H%7C50.931765,4.492978&zoom=16&size=600x350&scale=2&maptype=roadmap&key=AIzaSyCLTTVz0Ry-7C2Zg9pj37tN9mlVB-RSDjg">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

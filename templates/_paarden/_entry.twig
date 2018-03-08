@@ -1,0 +1,99 @@
+{% extends '_layout' %}
+
+{% block color %}style="background-color: #fff"{% endblock %}
+
+{% block content %}
+
+<div class="block">
+	<div class="title center">
+		<h1 class="title">{{ entry.title|upper }}</h1>
+	</div>
+	<div class="content">
+		<div class="row">
+			<div class="col-lg-8">
+				<img class="img-raised rounded img-fluid" style="width: 100%" src="{{ entry.foto.one().getUrl('paardCropped') }}">
+			</div>
+			<div class="col-lg-4">
+				<div class="card" style="margin-top: 0">
+					<div class="card-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th style="border-top: 0px" scope="col">Naam</th>
+									<th style="border-top: 0px" scope="col">{{ entry.naam }} {% if entry.achternaam %}{{ entry.achternaam }}{% endif %}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">Ras</th>
+									<td>{{ entry.ras }}</td>
+								</tr>
+								{% if entry.schofthoogte %}
+								<tr>
+									<th scope="row">Schofthoogte</th>
+									<td>{{ entry.schofthoogte }}</td>
+								</tr>
+								{% endif %}
+								{% if entry.geslacht %}
+								<tr>
+									<th scope="row">Geslacht</th>
+									<td>{{ entry.geslacht|capitalize }}</td>
+								</tr>
+								{% endif %}
+								{% if entry.geboortedatum %}
+								<tr>
+									<th scope="row">Geboren</th>
+									<td>{{ entry.geboortedatum|date("d F Y"|t) }}</td>
+								</tr>
+								{% endif %}
+								{% if entry.tabokaPaardDatum %}
+								<tr>
+									<th scope="row">Taboka-paard sinds</th>
+									<td>{{ entry.tabokaPaardDatum|date("F Y"|t) }}</td>
+								</tr>
+								{% endif %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+				{% if entry.overleden == "1" and entry.datumOverleden|length %}
+				<div class="card" style="margin-top: 0">
+					<div class="card-body">
+						<table class="table">
+							<tbody>
+								<tr>
+									<th style="border-top-width: 0" scope="row">Overleden</th>
+									<td style="border-top-width: 0">{{ entry.datumOverleden|date("d F Y"|t) }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-body">
+				{% if entry.overleden == '0' %}
+					<h5 class="card-title">Andere paarden</h5>
+					{% for paard in craft.entries.section('paardInfo').all() %}
+						{% if paard.overleden == '0' and entry.title != paard.title %}
+							<a href="{{ siteUrl }}{{ paard.title|lower }}" class="btn btn-primary">{{ paard.title }}</a>
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+
+				{% if entry.overleden == '1' %}
+					<h5 class="card-title">Andere vorige paarden</h5>
+					{% for paard in craft.entries.section('paardInfo').all() %}
+						{% if paard.overleden == '1' and entry.title != paard.title %}
+							<a href="{{ siteUrl }}{{ paard.title|lower }}" class="btn btn-primary">{{ paard.title }}</a>
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

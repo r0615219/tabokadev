@@ -1,0 +1,64 @@
+{
+  "name": "craftcms/craft",
+  "minimum-stability": "dev",
+  "description": "Craft CMS",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "project"
+  ],
+  "license": "MIT",
+  "homepage": "https://craftcms.com/",
+  "type": "project",
+  "support": {
+    "email": "support@craftcms.com",
+    "issues": "https://github.com/craftcms/cms/issues",
+    "forum": "https://craftcms.stackexchange.com/",
+    "source": "https://github.com/craftcms/cms",
+    "docs": "https://craftcms.com/docs",
+    "rss": "https://craftcms.com/changelog.rss"
+  },
+  "require": {
+    "php": ">=7.0.0",
+    "craftcms/cms": "^3.0.0-RC1",
+    "vlucas/phpdotenv": "^2.4.0",
+    "studioespresso/craft-easyaddressfield": "1.1.0",
+    "studioespresso/defaulttab": "1.2.2",
+    "solspace/craft3-freeform": "2.0.0-beta.9",
+    "sebastianlenz/linkfield": "1.0.3",
+    "rias/craft-position-fieldtype": "1.0.3",
+    "verbb/super-table": "dev-craft-3",
+    "craftcms/mandrill": "1.2.0",
+    "craftcms/redactor": "1.0.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "modules\\": "modules/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "platform": {
+      "php": "7.0"
+    }
+  },
+  "repositories": [
+        {
+            "type": "path",
+            "url": "plugins/",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+  "scripts": {
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+      "@composer dump-autoload -o",
+      "@php craft setup/welcome"
+    ]
+  }
+}

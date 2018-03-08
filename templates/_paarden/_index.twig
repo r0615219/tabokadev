@@ -1,0 +1,55 @@
+{% extends '_layout' %}
+
+{% block content %}
+
+<div class="block white">
+	<div class="title">
+		<h1 class="title">Onze paarden</h1>
+	</div>
+	<div class="content">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Onze paarden</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Vorige paarden</a>
+			</li>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+				<div class="flex">
+					{% for paard in craft.entries.section('paardInfo').all() %}
+						{% if paard.overleden == '0' %}
+						<div class="card">
+							<a href="{{ siteUrl }}{{ paard.title|lower }}">
+								<img class="card-img-top" src="{{ paard.foto.one().getUrl('paardOverview') }}" alt="{{ paard.title }}">
+								<div class="card-body center">
+									<h5 class="card-title">{{ paard.title }}</h5>
+								</div>
+							</a>
+						</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+				<div class="flex">
+					{% for paard in craft.entries.section('paardInfo').all() %}
+						{% if paard.overleden == '1' %}
+						<div class="card">
+							<a href="{{ siteUrl }}{{ paard.title|lower }}">
+								<img class="card-img-top" src="{{ paard.foto.one().getUrl('paardOverview') }}" alt="{{ paard.title }}">
+								<div class="card-body center">
+									<h5 class="card-title">{{ paard.title }}</h5>
+								</div>
+							</a>
+						</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends '_layout' %}
+
+{% block content %}
+
+<div class="block white">
+	<div class="title">
+		<h1 class="title">Kalender</h1>
+	</div>
+	{% if entry.maand|length %}
+		{% for month in entry.maand.all() %}
+			<div class="content">
+				<h2>{{ month.maandTitel }}</h2>
+				{% for day in month.kalenderInfo %}
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">{{ day.datum|date("l d F"|t) }}</h4>
+						<p class="card-text">{% if day.groen %}<i class="fas fa-check" style="color: green"></i>
+							{% else %}<i class="fas fa-times" style="color: red"></i>
+							{% endif %} &nbsp; &nbsp; {{ day.info }}</p>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		{% endfor %}
+	{% else %}
+	<p>Oeps, onze kalender is leeg. We zijn momenteel bezig met het invullen van de agenda.</p>
+	{% endif %}
+</div>
+
+{% endblock %}
