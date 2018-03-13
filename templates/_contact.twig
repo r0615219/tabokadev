@@ -7,7 +7,8 @@
 		<h1 class="title">Contact</h1>
 	</div>
 	<div class="content">
-		<!--https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=12&size=400x400&maptype=roadmap&key=YOUR_API_KEY-->
+		
+		{% cache %}
 		<div class="container">
 			{% if entry.text %}
 			<div class="title center">
@@ -38,6 +39,8 @@
 				</div>
 			</div>
 		</div>
+		{% endcache %}
+
 	</div>
 </div>
 
