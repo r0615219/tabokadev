@@ -31,10 +31,20 @@
 
     {% include '_snippet/_footer' %}
 
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    <script type="text/javascript" src="{{ siteUrl }}js/polyfill.min.js"></script>
-    <script type="text/javascript" src="{{ siteUrl }}js/modernizr.min.js"></script>
-    <script type="text/javascript" src="{{ siteUrl }}js/main.min.js"></script>
+    <!--   Core JS Files   -->
+    <script src="{{ siteUrl }}js/core/jquery.min.js"></script>
+    <script src="{{ siteUrl }}js/core/popper.min.js"></script>
+    <script src="{{ siteUrl }}js/bootstrap-material-design.js"></script>
+    <!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
+    <script src="{{ siteUrl }}js/plugins/moment.min.js"></script>
+    <!--    Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+    <script src="{{ siteUrl }}js/plugins/bootstrap-datetimepicker.min.js"></script>
+    <!--    Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="{{ siteUrl }}js/plugins/nouislider.min.js"></script>
+    <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+    <script src="{{ siteUrl }}js/material-kit.js?v=2.0.2"></script>
+    <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
+    <!--<script src="{{ siteUrl }}assets-for-demo/js/material-kit-demo.js"></script>-->
     <script>
         $(document).ready(function() {
 
