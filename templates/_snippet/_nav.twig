@@ -1,7 +1,7 @@
 <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
         <div class="container">
             <div class="navbar-translate">
-                <a class="navbar-brand" href="{{ siteUrl }}"><img src="./img/logo-01.png"></a>
+                <a class="navbar-brand" href="{{ siteUrl }}"><img src="{{ siteUrl }}/img/logo-01.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     <span class="navbar-toggler-icon"></span>
@@ -40,11 +40,11 @@
         </div>
     </nav>
     {% if entry.heroImage|length %}
-    <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('{{ entry.heroImage.one().getUrl('heroCompressed') }}');">
+    <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('{{ siteUrl }}{{ entry.heroImage.one().getUrl('heroCompressed') }}');">
     {% elseif entry.section.handle == 'paardInfo' %}
-    <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('{{ entry.foto.one().getUrl('heroCompressed') }}');">
+    <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('{{ siteUrl }}{{ entry.foto.one().getUrl('heroCompressed') }}');">
     {% else %}
-    <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('img/horse-eye.jpg');">
+    <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('{{ siteUrl }}/img/horse-eye.jpg');">
     {% endif %}
         <div class="container">
             <div class="row">

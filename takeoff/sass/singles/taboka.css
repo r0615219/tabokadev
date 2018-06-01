@@ -116,7 +116,38 @@ h1 {
 	color: #999 !important;
 }
 
+h1 {
+	font-size: 1.8rem;
+}
 
+@media (min-width: 576px) {
+    h1 {
+        font-size: 3.3125rem;
+    }
+}
+
+
+.table--day {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.day--green {
+	color: green;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.day--red {
+	color: #f79759;
+	font-weight: bold;
+	font-size: 2em;
+}
+
+.button-center {
+	margin: 15px auto;
+}
 
 
 

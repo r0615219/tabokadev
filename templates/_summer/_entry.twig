@@ -1,0 +1,39 @@
+{% extends '_layout' %}
+
+{% block color %}style="background-color: #fff"{% endblock %}
+
+{% block content %}
+
+<div class="block">
+	<div class="title center">
+		<h1 class="title">{{ entry.title|upper }}</h1>
+	</div>
+	<div class="content table--day">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Uur</th>
+					<th scope="col">Armand</th>
+					<th scope="col">Kaline</th>
+					<th scope="col">Belle</th>
+					<th scope="col">Louis</th>
+					<th scope="col">Cinzana</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for row in entry.zomerdag %}
+				<tr>
+					<th scope="row">{{ row.uur|date('H:i') }}</th>
+					<td class="day--{{ row.armand|length ? 'green' : 'red' }}">{{ row.armand|length ? row.armand : '■' }}</td>
+					<td class="day--{{ row.kaline|length ? 'green' : 'red' }}">{{ row.kaline|length ? row.kaline : '■' }}</td>
+					<td class="day--{{ row.belle|length ? 'green' : 'red' }}">{{ row.belle|length ? row.belle : '■' }}</td>
+					<td class="day--{{ row.louis|length ? 'green' : 'red' }}">{{ row.louis|length ? row.louis : '■' }}</td>
+					<td class="day--{{ row.cinzana|length ? 'green' : 'red' }}">{{ row.cinzana|length ? row.cinzana : '■' }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock %}
