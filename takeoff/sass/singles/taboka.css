@@ -149,6 +149,21 @@ h1 {
 	margin: 15px auto;
 }
 
+.card-body a:not(.btn) {
+	color: #1d3f28 !important;
+	text-decoration: underline !important;
+}
+
+.card-body a:not(.btn):hover {
+	color: #326e46 !important;
+	text-decoration: none !important;
+}
+
+.card-body a:not(.btn):active {
+	color: #6cbb86 !important;
+	text-decoration: none !important;
+}
+
 
 
 
