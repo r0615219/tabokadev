@@ -134,15 +134,15 @@ h1 {
 }
 
 .day--green {
-	color: green;
+	color: #83c86f;
 	font-weight: bold;
-	font-size: 1.2em;
+	font-size: 2em;
 }
 
 .day--red {
-	color: #f79759;
+	color: #c96c26;
 	font-weight: bold;
-	font-size: 2em;
+	font-size: 1.2em;
 }
 
 .button-center {

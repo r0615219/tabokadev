@@ -28,11 +28,11 @@
 				<tr>
 					<th scope="row">{{ row.uur|date('H:i') }}</th>
 					<th>{% if row.piste == 0 %}Piste{% else %}Wandeling{% endif %}</th>
-					<td class="day--{{ row.armand|length ? 'green' : 'red' }}">{{ row.armand|length ? row.armand : '■' }}</td>
-					<td class="day--{{ row.kaline|length ? 'green' : 'red' }}">{{ row.kaline|length ? row.kaline : '■' }}</td>
-					<td class="day--{{ row.belle|length ? 'green' : 'red' }}">{{ row.belle|length ? row.belle : '■' }}</td>
-					<td class="day--{{ row.louis|length ? 'green' : 'red' }}">{{ row.louis|length ? row.louis : '■' }}</td>
-					<td class="day--{{ row.cinzana|length ? 'green' : 'red' }}">{{ row.cinzana|length ? row.cinzana : '■' }}</td>
+					<td class="day--{{ row.armand|length ? 'red' : 'green' }}">{{ row.armand|length ? row.armand : '■' }}</td>
+					<td class="day--{{ row.kaline|length ? 'red' : 'green' }}">{{ row.kaline|length ? row.kaline : '■' }}</td>
+					<td class="day--{{ row.belle|length ? 'red' : 'green' }}">{{ row.belle|length ? row.belle : '■' }}</td>
+					<td class="day--{{ row.louis|length ? 'red' : 'green' }}">{{ row.louis|length ? row.louis : '■' }}</td>
+					<td class="day--{{ row.cinzana|length ? 'red' : 'green' }}">{{ row.cinzana|length ? row.cinzana : '■' }}</td>
 				</tr>
 				{% endfor %}
 			</tbody>
