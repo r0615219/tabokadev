@@ -28,22 +28,24 @@ return [
     // Dev environment settings
     'dev' => [
         // Base site URL
-        'siteUrl' => 'http://localhost:8888/t-craft/web/',
+        'siteUrl' => 'http://taboka.local.be/',
 
         // Dev Mode (see https://craftcms.com/support/dev-mode)
-        'devMode' => false,
+        'devMode' => true,
     ],
 
     // Staging environment settings
     'staging' => [
         // Base site URL
-        'siteUrl' => 'http://localhost:8888/t-craft/web/',
+        'siteUrl' => 'http://taboka.local.be/',
+        'devMode' => false,
     ],
 
     // Production environment settings
     'production' => [
         // Base site URL
         'siteUrl' => null,
+        'devMode' => false,
     ],
 
 ];

@@ -2,149 +2,194 @@
 
 {% block content %}
 
-<div class="block white">
-	<div class="title">
-		<h1 class="title">Update</h1>
-	</div>
-	<div class="content">
-		{% if entry.update %}
-			{% for row in entry.update.all() %}
-			<div class="card">
-				<div class="card-body">
-					<h4 class="card-title">{{ row.datum|date("l d F Y"|t) }}</h4>
-					<p class="card-text">{{ row.text }}</p>
-				</div>
-			</div>
-			{% endfor %}
-		{% else %}
-			<p>Er is momenteel geen update.</p>
-		{% endif %}
-		{% if entry.nieuws %}
-			{% for row in entry.nieuws.all() %}
-			<div class="card">
-				<div class="card-body">
-					<div class="row">
-						{% if row.image.one()|length %}
-						<div class="col-lg-2">
-							<img src="{{ row.image.one().getUrl('nieuwsAfbeelding') }}" class="rounded-circle img-fluid">
-						</div>
-						<div class="col-lg-10">
-							<h4 class="card-title">{{ row.titel }}</h4>
-							<div class="card-text">
-								<p>{{ row.text }}</p>
-							</div>
-						</div>
-						{% else %}
-						<div class="col-lg-12">
-							<h4 class="card-title">{{ row.titel }}</h4>
-							<div class="card-text">
-								<p>{{ row.text }}</p>
-							</div>
-						</div>
-						{% endif %}
-					</div>
-				</div>
-			</div>
-			{% endfor %}
-		{% endif %}
-		<a name="over-taboka"></a>
-	</div>
-</div>
+    <div class="block white">
+        <div class="title">
+            <h2 class="title">Taboka Hoeve</h2>
+        </div>
+        <div class="content">
+            {% if entry.update %}
+                {% for row in entry.update.all() %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ row.datum|date("l d F Y"|t) }}</h4>
+                            <p class="card-text">{{ row.text }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Er is momenteel geen update.</p>
+            {% endif %}
+            {% if entry.nieuws %}
+                {% for row in entry.nieuws.all() %}
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                {% if row.image.one()|length %}
+                                    <div class="col-lg-2">
+                                        <img src="{{ row.image.one().getUrl('nieuwsAfbeelding') }}"
+                                             class="rounded-circle img-fluid">
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <h4 class="card-title">{{ row.titel }}</h4>
+                                        <div class="card-text">
+                                            <p>{{ row.text }}</p>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="col-lg-12">
+                                        <h4 class="card-title">{{ row.titel }}</h4>
+                                        <div class="card-text">
+                                            <p>{{ row.text }}</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <a name="over-taboka"></a>
+        </div>
+    </div>
 
-<div class="block green">
-	<div class="content">
-		<div class="row">
-			<div class="col-lg-6">
-				<div class="title">
-					<h1 class="title">Over Taboka</h1>
-				</div>
-				<h3><strong>Ta</strong>nizzo, <strong>Bo</strong>nnie en <strong>Ka</strong>line <i class="material-icons">forward</i> TABOKA</h3>
-				{{ entry.overText }}
-			</div>
-			<div class="col-lg-6">
-				<img class="image-wrapper img-raised rounded img-fluid" src="img/emmer-paard.jpg">
-			</div>
-		</div>
-	</div>
-</div>
+    {% if entry.galerij|length %}
+        {% set galerij = entry.galerij.one() %}
+        <div class="block white pt-0">
+            <div class="content">
+                {% if galerij.blockTitle|length %}
+                    <div class="title">
+                        <h2 class="title">{{ galerij.blockTitle }}</h2>
+                    </div>
+                {% endif %}
+                {% if galerij.intro %}
+                    <div class="row">
+                        <div class="col-lg-10">
+                            {{ galerij.intro }}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if galerij.images|length %}
+                    <div class="flex">
+                        {% for image in galerij.images %}
+                            <div class="card">
+                                <a data-fancybox="gallery" href="{{ image.getUrl() }}">
+                                    <img class="card-img-top" src="{{ image.getUrl('paardOverview') }}" alt="{{ image.title }}">
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
 
-{% cache %}
-<div class="block white">
-	<div class="content">
-		<div class="row">
-			<div class="col-lg-6">
-				<img class="image-wrapper img-raised rounded img-fluid" src="img/Evelyn-sprong.jpg">
-			</div>
-			<div class="col-lg-6">
-				<div class="title">
-					<h1 class="title">Kalender</h1>
-				</div>
-				{{ entry.kalenderText }}
-				<a href="{{ siteUrl}}kalender" class="btn btn-primary">{{ entry.button }}</a>
-			</div>
-		</div>
-	</div>
-</div>
-{% endcache %}
+    <div class="block green">
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="title">
+                        <h1 class="title">Over Taboka</h1>
+                    </div>
+                    <h3><strong>Ta</strong>nizzo, <strong>Bo</strong>nnie en <strong>Ka</strong>line <i
+                                class="material-icons">forward</i> TABOKA</h3>
+                    {{ entry.overText }}
+                </div>
+                <div class="col-lg-6">
+                    <img class="image-wrapper img-raised rounded img-fluid" src="img/emmer-paard.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
 
-{% cache %}
-<div class="block green">
-	<div class="title">
-		<h1 class="title">Onze paarden</h1>
-	</div>
-	<div class="content">
-		<div class="row">
-			<div class="col-12">
-				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-					<ol class="carousel-indicators">
-						<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-					</ol>
-					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<img class="d-block w-100" src="{{ entry.imageOne.one().getUrl('carouselImage') }}" alt="{{ entry.imageOne.one() }}">
-						</div>
-						<div class="carousel-item">
-							<img class="d-block w-100" src="{{ entry.imageTwo.one().getUrl('carouselImage') }}" alt="{{ entry.imageTwo.one() }}">
-						</div>
-						<div class="carousel-item">
-							<img class="d-block w-100" src="{{ entry.imageThree.one().getUrl('carouselImage') }}" alt="{{ entry.imageThree.one() }}">
-						</div>
-					</div>
-					<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a>
-					<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
-				</div>
-				<br>
-				<div class="center">
-					<a href="{{ siteUrl}}paarden" class="btn btn-secondary btn-lg">Ontdek hier alle Taboka-paarden</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-{% endcache %}
+    {% cache %}
+        <div class="block white">
+            <div class="content">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img class="image-wrapper img-raised rounded img-fluid" src="img/Evelyn-sprong.jpg">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="title">
+                            <h1 class="title">Kalender</h1>
+                        </div>
+                        {{ entry.kalenderText }}
+                        <a href="{{ siteUrl }}kalender" class="btn btn-primary">{{ entry.button }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endcache %}
 
-{% cache %}
-<div class="block white">
-	<div class="title">
-		<h1 class="title">Mutualiteit</h1>
-	</div>
-	<div class="content">
-		<p><strong>Beste paardrijder, paardrijdster, beste ouders,</strong></p>
-		<p>De meeste mutualiteiten moedigen de jeugd aan om te sporten door een jaarlijkse tussenkomst voor betaalde lidgelden bij erkende sportclubs. De Taboka-Hoeve FV is aangesloten bij VLP (Vlaamse Liga voor Paardensport) en hierdoor erkend als officiële sportclub. 
-		Indien u wil genieten van de tussenkomst van uw mutualiteit voor het paardrijden op de Taboka-Hoeve, mag u ons het invulformulier van uw mutualiteit bezorgen, vooraf ingevuld met de gegevens van uw kind (of geel vignet). Wij bezorgen u het document zo snel mogelijk vervolledigd terug. Het blanco formulier voor tussenkomst vindt u op de website van uw mutualiteit.</p>
-		<p>Indien u nog vragen zou hebben hierover, mag u mij gerust aanspreken. <br>
-			<strong>Suzanne</strong>
-		</p>
-	</div>
-</div>
-{% endcache %}
+    {% cache %}
+        <div class="block green">
+            <div class="title">
+                <h1 class="title">Onze paarden</h1>
+            </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-12">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="{{ entry.imageOne.one().getUrl('carouselImage') }}"
+                                         alt="{{ entry.imageOne.one() }}">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="{{ entry.imageTwo.one().getUrl('carouselImage') }}"
+                                         alt="{{ entry.imageTwo.one() }}">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100"
+                                         src="{{ entry.imageThree.one().getUrl('carouselImage') }}"
+                                         alt="{{ entry.imageThree.one() }}">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                               data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                               data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        <br>
+                        <div class="center">
+                            <a href="{{ siteUrl }}paarden" class="btn btn-secondary btn-lg">Ontdek hier alle
+                                Taboka-paarden</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endcache %}
+
+    {% cache %}
+        <div class="block white">
+            <div class="title">
+                <h1 class="title">Mutualiteit</h1>
+            </div>
+            <div class="content">
+                <p><strong>Beste paardrijder, paardrijdster, beste ouders,</strong></p>
+                <p>De meeste mutualiteiten moedigen de jeugd aan om te sporten door een jaarlijkse tussenkomst voor
+                    betaalde lidgelden bij erkende sportclubs. De Taboka-Hoeve FV is aangesloten bij VLP (Vlaamse Liga
+                    voor Paardensport) en hierdoor erkend als officiële sportclub.
+                    Indien u wil genieten van de tussenkomst van uw mutualiteit voor het paardrijden op de Taboka-Hoeve,
+                    mag u ons het invulformulier van uw mutualiteit bezorgen, vooraf ingevuld met de gegevens van uw
+                    kind (of geel vignet). Wij bezorgen u het document zo snel mogelijk vervolledigd terug. Het blanco
+                    formulier voor tussenkomst vindt u op de website van uw mutualiteit.</p>
+                <p>Indien u nog vragen zou hebben hierover, mag u mij gerust aanspreken. <br>
+                    <strong>Suzanne</strong>
+                </p>
+            </div>
+        </div>
+    {% endcache %}
 
 {% endblock %}
