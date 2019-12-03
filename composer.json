@@ -30,7 +30,7 @@
     "rias/craft-position-fieldtype": "1.0.3",
     "verbb/super-table": "dev-craft-3",
     "craftcms/mandrill": "1.2.0",
-    "craftcms/redactor": "1.0.1"
+    "craftcms/redactor": "2.4.0"
   },
   "autoload": {
     "psr-4": {
